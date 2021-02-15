@@ -35,7 +35,7 @@ export const signIn = async (identity: string, password: string) => {
       success: false,
       statusCode: 417,
       code: 'internal_application_error_signin',
-      message: JSON.stringify(error),
+      : JSON.stringify(error),
     };
     return excep;
   }

@@ -42,7 +42,7 @@ const TestimonialDetails = ({ image }: any) => (
                 noOfLines={1}
                 textAlign="center"
               >
-                Sanjana
+                Batch - 05
               </Text>
             </Tooltip>
           </Link>

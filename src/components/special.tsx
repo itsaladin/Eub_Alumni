@@ -1,9 +1,11 @@
+import { golden } from '@/themes/custom.color';
 import { Box, Heading, Image } from '@chakra-ui/react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export const Special = () => (
   <Box>
     <Heading
+      color={golden}
       pt={['20px', '30px', '40px', '50px']}
       fontSize={['15px', '20px', '25px', '25px']}
     >

@@ -25,24 +25,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 function Story() {
   return (
     <Box bg={csBackground}>
-      <Box mx={['10px', '50px', '100px', '200px']}>
-        <HStack justifyContent="space-between">
-          <Box>
-            <Image
-              maxW={['100px', '120px', '130px', '150px']}
-              maxH={['50px', '60px', '80px', '80px']}
-              objectFit="contain"
-              ml={4}
-              src="/logo/BM2.png"
-              alt="Segun Adebayo"
-            />
-          </Box>
-          <HStack>
-            <Text mx={2}>Memper Login</Text>
-            <Text mx={2}>Help</Text>
-          </HStack>
-        </HStack>
-      </Box>
       <Box bg={golden}>
         <HStack
           minH={['40px', '50px', '80px', '50px']}
@@ -62,18 +44,17 @@ function Story() {
           <TabList bg="gray.50" mx={['10px', '50px', '100px', '200px']}>
             <Tab>Featured Success Storices</Tab>
             <Tab>Video Storices</Tab>
-            <Tab>Tell Us Your Story</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
               <Center>
                 <Text fontFamily="initial" fontSize="28px">
-                  Welcome to Bismillah Pride.
+                  Welcome to European University Pride.
                 </Text>
               </Center>
               <Center mb={2}>
                 <Text fontSize="20px">
-                  This is where we celebrate Bismillah.com Success Stories.!
+                  This is where we celebrate European Success Stories.!
                 </Text>
               </Center>
               <Grid
@@ -83,7 +64,7 @@ function Story() {
               >
                 <GridItem colSpan={4} bg="gray.50" p={5} borderRadius={10}>
                   <Heading as="h5" size="lg" fontFamily="initial">
-                    Narender & Ramanpreet
+                    We are European Students
                   </Heading>
                   <HStack mt={3}>
                     <CalendarIcon w={6} h={6} />
@@ -102,11 +83,11 @@ function Story() {
                     Ours is an arranged marriage but I would not agree because I
                     fell in love with her with every day passing. Since the
                     day(i.e. 4th March 2015) Raman accepted my interest on
-                    Bismillah.com my life changed. I never thought some one
-                    sitting so far in Canada would make me feel loved the way I
-                    felt. Initial Chats and conversation made us understand each
-                    other well and we started talking for hours on phone and
-                    skype. Finally, we talked to our parents and they took the
+                    European my life changed. I never thought some one sitting
+                    so far in Canada would make me feel loved the way I felt.
+                    Initial Chats and conversation made us understand each other
+                    well and we started talking for hours on phone and skype.
+                    Finally, we talked to our parents and they took the
                     conversation ahead through phone calls. To take it further
                     Ramanpreet&apos;s Mother asked us to meet her uncle living
                     in Patiala, India as she was with Ramanpreet in Canada at
@@ -147,24 +128,24 @@ function Story() {
                   </HStack>
                   <HStack mt={3}>
                     <Text>
-                      &quot;Bismillah.com Team congratulates Narender &
-                      Ramanpreet We wish you both a happy future.&quot;
+                      &quot;European Team congratulates We wish you both a happy
+                      future.&quot;
                     </Text>
                   </HStack>
                 </GridItem>
-                <GridItem colSpan={2} bg="gray.50" p={5} borderRadius={10}>
+                <GridItem colSpan={2} bg="gray.50" pt={5} borderRadius={10}>
                   <Box>
                     <Center>
                       <Image
                         borderRadius={8}
                         maxW={['100px', '120px', '130px', '250px']}
                         maxH={['50px', '60px', '80px', '250px']}
-                        src="/sidebar/sidebar_image.jpg"
+                        src="/slider/2.jpg"
                         alt="Dan Abramov"
                         mb={4}
                       />
                     </Center>
-                    <Text textAlign="center">Narender & Ramanpreet ddd</Text>
+                    <Text textAlign="center">We Are EUBEAN</Text>
                     <Text textAlign="center">20 May 2016</Text>
                   </Box>
                   <Box mt={10}>
@@ -173,12 +154,12 @@ function Story() {
                         borderRadius={8}
                         maxW={['100px', '120px', '130px', '250px']}
                         maxH={['50px', '60px', '80px', '250px']}
-                        src="/sidebar/sidebar_image.jpg"
+                        src="/slider/5.jpg"
                         alt="Dan Abramov"
                         mb={4}
                       />
                     </Center>
-                    <Text textAlign="center">Narender & Ramanpreet ddd</Text>
+                    <Text textAlign="center">Batch ovaral review</Text>
                     <Text textAlign="center">20 May 2016</Text>
                   </Box>
                 </GridItem>
@@ -186,7 +167,7 @@ function Story() {
             </TabPanel>
             <TabPanel mx={['10px', '50px', '100px', '200px']}>
               <Center mb={3}>
-                <Text fontSize="28px">
+                <Text fontSize="25px">
                   Watch the beautiful journey of our Success Stories and be
                   inspired.
                 </Text>
@@ -195,15 +176,17 @@ function Story() {
                 <AspectRatio maxW="350px" ratio={1}>
                   <iframe
                     title="naruto"
-                    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+                    src="https://www.youtube.com/embed/XnfQp9ObLk8"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 </AspectRatio>
                 <AspectRatio maxW="350px" ratio={1}>
                   <iframe
                     title="naruto"
-                    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+                    src="https://www.youtube.com/embed/5rJgu3U5lbY"
                     allowFullScreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   />
                 </AspectRatio>
               </Stack>

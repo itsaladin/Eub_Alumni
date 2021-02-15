@@ -1,6 +1,7 @@
 import Footer from '@/components/footer';
 import { Header } from '@/components/header';
 import TestimonialDetails from '@/components/testimonial-details';
+import { golden } from '@/themes/custom.color';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
   AspectRatio,
@@ -26,18 +27,6 @@ import { Special } from '../components/special';
 export default function Home() {
   const cardSliderResize = useBreakpointValue([100, 100, 50, 30]);
 
-  interface HomeType {
-    name: string;
-    link: string;
-  }
-  const HelpLink: React.FC<HomeType> = ({ name, link }) => (
-    <Center my={2}>
-      <Link fontSize={['12px', '14px', '14px', '16px']} href={link}>
-        {name}
-      </Link>
-    </Center>
-  );
-
   return (
     <Box>
       <Head>
@@ -47,7 +36,6 @@ export default function Home() {
       </Head>
       <Box bg="gray.200">
         <Box
-          // h={['320px', '400px', '500px', '650px']}
           bgImage="url('/slider/eub_slider.jpg')"
           objectFit="contain"
           bgPosition={['center', 'contain']}
@@ -57,13 +45,13 @@ export default function Home() {
           <Box marginX={['0px', '50px', '80px', '150px']}>
             <Header />
             <Box>
-              <Box>
+              <Box color={golden}>
                 <Heading
                   textAlign="center"
                   pt={['10px', '50px', '80px', '20px']}
                   fontSize={['12px', '12px', '20px', '20px']}
                 >
-                  --------A new day at Creighton --------
+                  --------A new day at EUB --------
                 </Heading>
                 <Heading
                   textAlign="center"
@@ -74,28 +62,29 @@ export default function Home() {
                 </Heading>
               </Box>
               <Box
-                bg="rgba(255, 255, 255, .4)"
-                borderRadius={5}
-                shadow={5}
                 px={5}
+                shadow={5}
                 boxShadow="xl"
                 rounded="md"
+                borderRadius={5}
+                bg="rgba(255, 255, 255, .4)"
                 justifyContent="space-between"
               >
                 <Text
                   color="black"
                   textAlign="center"
                   pt={['10px', '50px', '80px', '20px']}
-                  fontSize={['11px', '15px', '20px', '22px']}
+                  fontSize={['11px', '15px', '20px', '18px']}
                 >
-                  At Creighton, we&apos;re defining our future while embracing a
-                  tradition more than 140 years in the making. Our Jesuit
-                  mission shapes our vision. But our alumni and friends — our
-                  one-of-a-kind community — YOU make that vision a reality. You
-                  ensure our students’ success. You help us forge a bold new
-                  chapter in Creighton’s extraordinary story. Together, we will
-                  keep Creighton thriving and prepare a new generation to lead
-                  the way.
+                  At European University of Banglades, we&apos;re defining our
+                  future while embracing a tradition more than 140 years in the
+                  making. Our Jesuit mission shapes our vision. But our alumni
+                  and friends — our one-of-a-kind community — YOU make that
+                  vision a reality. You ensure our students’ success. You help
+                  us forge a bold new chapter in European University of
+                  Banglades’s extraordinary story. Together, we will keep
+                  European University of Banglades thriving and prepare a new
+                  generation to lead the way.
                 </Text>
                 <Stack align="center">
                   <NextLink passHref href="/story">
@@ -120,13 +109,13 @@ export default function Home() {
           <Special />
         </Box>
 
-        <Box bg="gray.200">
-          <Center>
-            <Heading fontSize={['15px', '20px', '28px', '28px']}>
-              Thousand of Success Stories
-            </Heading>
-          </Center>
+        <Center bg="gray.200" mb={10}>
+          <Heading fontSize={['15px', '20px', '28px', '28px']} color={golden}>
+            Thousand of Success Stories
+          </Heading>
+        </Center>
 
+        <Box bg="gray.200">
           <Carousel
             autoPlay={true}
             centerMode={true}
@@ -137,11 +126,12 @@ export default function Home() {
             interval={2000}
             centerSlidePercentage={cardSliderResize}
           >
-            <TestimonialDetails image="/slider/eub_slider.jpg" />
-            <TestimonialDetails image="/slider/eub_slider.jpg" />
+            <TestimonialDetails image="/slider/2.jpg" />
+            <TestimonialDetails image="/slider/5.jpg" />
+            <TestimonialDetails image="/slider/3.jpg" />
           </Carousel>
         </Box>
-        <Box px={['20px', '50px', '80px', '150px']} bg="gray.200" py={['80px']}>
+        <Box px={['20px', '50px', '80px', '150px']} bg="gray.200" pb={['80px']}>
           <VStack>
             <Image
               src="/logo/eub_logo_small.png"
@@ -150,21 +140,35 @@ export default function Home() {
               objectFit="cover"
               fit="cover"
               alt="king image not found"
+              borderRadius="50%"
+              py={10}
             />
             <Text
               textAlign="justify"
               fontSize={['11px', '14px', '14px', '16px']}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry&apos;s standard dummy
-              text ever since the 1500s, when an unknown printer took a galley
-              of type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+              European University of Bangladesh (EUB) is a third generation
+              private university aiming at providing modern education of
+              European standard in Bangladesh. It has been accredited by the
+              Government of the People’s Republic of Bangladesh, curricula and
+              academic while its programs have been approved by the University
+              Grants Commission (UGC). It was established under the Private
+              University Act 2010 with the approval of the Government of
+              Bangladesh on 14th March, 2012 for awarding degrees in various
+              fields. The President of the People’s Republic of Bangladesh is
+              the Chancellor of European University of Bangladesh. The
+              University applies student- centred teaching and learning methods,
+              pursues applied research and encourages creative activities with
+              the objective of producing world-class professionals to meet
+              national and international standard, as well as, the requirement
+              of its graduates for their career development and employment. We
+              are constantly investing in our campus and facilities to ensure
+              all students have a world-class teaching and learning environment,
+              state-of-the-art facilities and enhancing the vibrancy of the
+              campus experience to make students time in EUB truly one to
+              cherish. The University is located at the heart of the Dhaka City
+              at prestigious institutional zone of Gabtoli (opposite to Gabtoli
+              Bus Terminal) with well-connected communication system.
             </Text>
           </VStack>
         </Box>
@@ -188,7 +192,8 @@ export default function Home() {
                 >
                   <iframe
                     title="naruto"
-                    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+                    src="https://www.youtube.com/embed/5rJgu3U5lbY"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 </AspectRatio>
@@ -199,16 +204,19 @@ export default function Home() {
               alignSelf="center"
               textColor="white"
             >
-              <Heading
-                mb={['20px', '30px', '40px', '50px']}
-                fontSize={['15px', '20px', '28px', '35px']}
-              >
-                Leading the Way
-              </Heading>
+              <Center>
+                <Heading
+                  mb={['20px', '30px', '40px', '50px']}
+                  fontSize={['15px', '20px', '28px', '35px']}
+                >
+                  Leading the Way
+                </Heading>
+              </Center>
               <Text>
-                Creighton is a world-class academic institution recognized for
-                excellence in teaching, learning and research, and enriched by a
-                centuries-long tradition of Jesuit, Catholic education.
+                European University is a world-class academic institution
+                recognized for excellence in teaching, learning and research,
+                and enriched by a centuries-long tradition of Jesuit, Catholic
+                education.
               </Text>
               <Stack align="center">
                 <NextLink passHref href="/story">
@@ -245,50 +253,210 @@ export default function Home() {
               </Center>
               <Divider />
               <Box my={['10px', '5', '25px', '30px']}>
-                <HelpLink name="Member Login" link="/story" />
-                <HelpLink name="Sign Up" link="/" />
-                <HelpLink name="Premium Membership" link="/" />
-                <HelpLink name="Customer Support" link="/" />
-                <HelpLink name="Sitemap" link="/" />
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/course-offer-fall-2020/"
+                  isExternal
+                >
+                  Course offer
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/courses-tuition-fees/"
+                  isExternal
+                >
+                  Course & Tution Fee
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/students-guideline/"
+                  isExternal
+                >
+                  HelpLink For Student Guidline
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/1st-semester-class-routine-spring-2021-2/"
+                  isExternal
+                >
+                  First Semester Class Routine
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/notice/"
+                  isExternal
+                >
+                  Admission Notice
+                </Link>
               </Box>
             </Box>
             <Box my={['0px', '10px', '30px', '40px']}>
               <Center mb={2}>
-                <Text fontSize="xl">Company</Text>
+                <Text fontSize="xl">Admission</Text>
               </Center>
               <Divider />
               <Box my={['10px', '5', '25px', '30px']}>
-                <HelpLink name="Member Login" link="/" />
-                <HelpLink name="Sign Up" link="/" />
-                <HelpLink name="Premium Membership" link="/" />
-                <HelpLink name="Customer Support" link="/" />
-                <HelpLink name="Sitemap" link="/" />
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/academic-policy/"
+                  isExternal
+                >
+                  Academic Policy
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/rules-regulation/"
+                  isExternal
+                >
+                  Rulses & Regulations
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/degrees-offered/"
+                  isExternal
+                >
+                  Degree & Offred
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/credit-transfer/"
+                  isExternal
+                >
+                  Credit Transfer
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/notice/"
+                  isExternal
+                >
+                  Admission Notice
+                </Link>
               </Box>
             </Box>
             <Box my={['0px', '10px', '30px', '40px']}>
               <Center mb={2}>
-                <Text fontSize="xl">More</Text>
+                <Text fontSize="xl">Administration</Text>
               </Center>
               <Divider />
               <Box my={['10px', '5', '25px', '30px']}>
-                <HelpLink name="Member Login" link="/" />
-                <HelpLink name="Sign Up" link="/" />
-                <HelpLink name="Premium Membership" link="/" />
-                <HelpLink name="Customer Support" link="/" />
-                <HelpLink name="Sitemap" link="/" />
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/top-management/"
+                  isExternal
+                >
+                  Top Management
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/office-of-vice-chancellor/"
+                  isExternal
+                >
+                  Vice Chancellor
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/office-of-the-treasurer/"
+                  isExternal
+                >
+                  Office Of The Treasurer
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/office-of-the-treasurer/#"
+                  isExternal
+                >
+                  Office Of The Proctor
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/program-co-ordination/"
+                  isExternal
+                >
+                  Program Co-Ordinator
+                </Link>
               </Box>
             </Box>
             <Box my={['0px', '10px', '30px', '40px']}>
               <Center mb={2}>
-                <Text fontSize="xl">Privacy & You</Text>
+                <Text fontSize="xl">Student Corner</Text>
               </Center>
               <Divider />
               <Box my={['10px', '5', '25px', '30px']}>
-                <HelpLink name="Member Login" link="/" />
-                <HelpLink name="Sign Up" link="/" />
-                <HelpLink name="Premium Membership" link="/" />
-                <HelpLink name="Customer Support" link="/" />
-                <HelpLink name="Sitemap" link="/" />
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/#"
+                  isExternal
+                >
+                  Class Routine
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/#"
+                  isExternal
+                >
+                  Exam Schedule
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="http://iems.eub.edu.bd/"
+                  isExternal
+                >
+                  Result
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/laboratories/"
+                  isExternal
+                >
+                  Laboratories
+                </Link>
+                <Link
+                  noOfLines={1}
+                  mb={5}
+                  textAlign="center"
+                  href="https://eub.edu.bd/clubs-and-co-curriculars/"
+                  isExternal
+                >
+                  Clubs And Curriculars
+                </Link>
               </Box>
             </Box>
           </Grid>

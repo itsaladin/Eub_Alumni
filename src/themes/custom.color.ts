@@ -1,4 +1,4 @@
 export const csBackground = '#f1f1f2';
 
 // theme color
-export const golden = '#dabf7d';
+export const golden = 'green.500';
