@@ -12,6 +12,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  HStack,
   IconButton,
   Image,
   Input,
@@ -39,8 +40,8 @@ import React, {
   MouseEvent,
 } from 'react';
 
-export const Header = ({ props }: any) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const SubHeader = ({ props }: any) => {
+  const { onOpen } = useDisclosure();
 
   const initialRef = useRef<any>();
   const finalRef = useRef<any>();
@@ -51,13 +52,11 @@ export const Header = ({ props }: any) => {
   const [password, setPassword] = useState('');
 
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-
-  const [resetPhoneNo, setResetPhoneNo] = useState('');
-  const [updateOTP, setUpdateOTP] = useState('');
-  const [updatePass, setUpdatePass] = useState('');
-  const [updateConfPass, setUpdateConfPass] = useState('');
+  const [roll, setRoll] = useState('');
+  const [department, setDepartment] = useState('');
+  const [passYear, setPassYear] = useState('');
+  const [batch, setBatch] = useState('');
 
   const [isSignIn, setSignIn] = useState(false);
   const [isSignUp, setSignUp] = useState(false);
@@ -72,6 +71,20 @@ export const Header = ({ props }: any) => {
   const onChangePassword = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setPassword(event.target.value);
+    },
+    [],
+  );
+
+  const onChangeDepartement = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setDepartment(event.target.value);
+    },
+    [],
+  );
+
+  const onChangePassYear = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setPassYear(event.target.value);
     },
     [],
   );
@@ -122,18 +135,22 @@ export const Header = ({ props }: any) => {
     setName(event.target.value);
   }, []);
 
-  const onChangeEmail = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+  const onChangeBatch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setBatch(event.target.value);
   }, []);
 
   const onChangePhone = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
   }, []);
 
+  const onChangeRoll = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setRoll(event.target.value);
+  }, []);
+
   const signUpHandler = useCallback(
     async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
       event.preventDefault();
-      if (!name || !email || !phone || !password) {
+      if (!name || !batch || !phone || !password) {
         return toast({
           title: 'Warning',
           description: 'All filed are required !!!!',
@@ -142,18 +159,6 @@ export const Header = ({ props }: any) => {
           isClosable: true,
           position: 'top-right',
         });
-      }
-      if (email !== 'undefined') {
-        if (!pattern.test(email)) {
-          return toast({
-            title: 'Registration faild',
-            description: 'Email id invalid',
-            status: 'warning',
-            duration: 3000,
-            isClosable: true,
-            position: 'top-right',
-          });
-        }
       }
 
       const res = await signUp(name, email, sanitizePhone(phone), password);
@@ -173,7 +178,7 @@ export const Header = ({ props }: any) => {
         setSignIn(false);
 
         setName('');
-        setEmail('');
+        setBatch('');
         setPassword('');
       }
 
@@ -199,32 +204,25 @@ export const Header = ({ props }: any) => {
       }
       return console.log(res);
     },
-    [name, email, password, phone, toast],
+    [name, password, phone, toast, batch],
   );
 
   return (
-    <Flex
-      as="nav"
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      px={5}
-      py={5}
-      color="white"
-      {...props}
-    >
-      <Flex align="center" mr={5}>
-        <Image
-          maxW={['120px', '120px', '130px', '180px']}
-          objectFit="contain"
-          src="/logo/logo-eub.png"
-          alt="Segun Adebayo"
-        />
-      </Flex>
+    <HStack as="nav" justify="space-between" py={5} color="white" {...props}>
+      <NextLink passHref href="/">
+        <Link>
+          <Image
+            maxW={['120px', '120px', '130px', '180px']}
+            objectFit="contain"
+            src="/logo/logo-eub.png"
+            alt="Segun Adebayo"
+          />
+        </Link>
+      </NextLink>
 
-      <Box alignItems="center" flexGrow={1}>
+      <Box alignItems="flex-end">
         <Stack direction="row-reverse">
-          <NextLink passHref href="/#">
+          <NextLink passHref href="#">
             <Link>
               <Box
                 variant="link"
@@ -235,8 +233,8 @@ export const Header = ({ props }: any) => {
               >
                 <Button
                   rightIcon={<ArrowForwardIcon />}
-                  color={golden}
-                  colorScheme={golden}
+                  color="white"
+                  colorScheme="white"
                   display={{
                     base: 'none',
                     sm: 'none',
@@ -254,13 +252,13 @@ export const Header = ({ props }: any) => {
             </Link>
           </NextLink>
 
-          <NextLink passHref href="/#">
+          <NextLink passHref href="#">
             <Link>
               <Box variant="link">
                 <Button
                   rightIcon={<ArrowForwardIcon />}
-                  color={golden}
-                  colorScheme={golden}
+                  color="white"
+                  colorScheme="white"
                   display={{
                     base: 'none',
                     sm: 'none',
@@ -278,13 +276,13 @@ export const Header = ({ props }: any) => {
             </Link>
           </NextLink>
 
-          <NextLink passHref href="/story">
+          <NextLink passHref href="#">
             <Link>
               <Box variant="link">
                 <Button
                   rightIcon={<ArrowForwardIcon />}
-                  color={golden}
-                  colorScheme={golden}
+                  color="white"
+                  colorScheme="white"
                   display={{
                     base: 'none',
                     sm: 'none',
@@ -298,13 +296,13 @@ export const Header = ({ props }: any) => {
             </Link>
           </NextLink>
 
-          <NextLink passHref href="/about">
+          <NextLink passHref href="#">
             <Link>
               <Box variant="link">
                 <Button
                   rightIcon={<ArrowForwardIcon />}
-                  color={golden}
-                  colorScheme={golden}
+                  color="white"
+                  colorScheme="white"
                   display={{
                     base: 'none',
                     sm: 'none',
@@ -520,6 +518,6 @@ export const Header = ({ props }: any) => {
           )}
         </Stack>
       </Box>
-    </Flex>
+    </HStack>
   );
 };
