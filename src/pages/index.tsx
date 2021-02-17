@@ -93,7 +93,7 @@ export default function Home() {
                         rightIcon={<ArrowForwardIcon />}
                         colorScheme="teal"
                         variant="outline"
-                        _onFocus="blue"
+                        // _onFocus="blue"
                         my={['10px', '50px', '80px', '10px']}
                       >
                         Message
@@ -225,7 +225,7 @@ export default function Home() {
                       rightIcon={<ArrowForwardIcon />}
                       colorScheme="white"
                       variant="outline"
-                      _onFocus="blue"
+                      // _onFocus="blue"
                       mt={5}
                     >
                       Find your giving opportunity

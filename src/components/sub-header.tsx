@@ -1,15 +1,10 @@
+import { signIn, signUp } from '@/api/auth/signUp';
 import { golden } from '@/themes/custom.color';
 import { sanitizePhone } from '@/utils/sanitizers';
-import {
-  ArrowForwardIcon,
-  ChevronDownIcon,
-  HamburgerIcon,
-} from '@chakra-ui/icons';
-import NextLink from 'next/link';
+import { ArrowForwardIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -32,16 +27,19 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import React, {
   ChangeEvent,
+  MouseEvent,
   useCallback,
   useRef,
   useState,
-  MouseEvent,
 } from 'react';
 
 export const SubHeader = ({ props }: any) => {
   const { onOpen } = useDisclosure();
+  const router = useRouter();
 
   const initialRef = useRef<any>();
   const finalRef = useRef<any>();
@@ -50,13 +48,15 @@ export const SubHeader = ({ props }: any) => {
 
   const [identity, setIdentity] = useState('');
   const [password, setPassword] = useState('');
-
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [roll, setRoll] = useState('');
-  const [department, setDepartment] = useState('');
   const [passYear, setPassYear] = useState('');
   const [batch, setBatch] = useState('');
+  const [department, setDepartment] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [blood, setBlood] = useState('');
+  const [company, setCompany] = useState('');
+  const [designation, setDesignation] = useState('');
+  const [email, setEmail] = useState('');
 
   const [isSignIn, setSignIn] = useState(false);
   const [isSignUp, setSignUp] = useState(false);
@@ -67,13 +67,18 @@ export const SubHeader = ({ props }: any) => {
     },
     [],
   );
-
   const onChangePassword = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setPassword(event.target.value);
     },
     [],
   );
+  const onChangeBlood = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setBlood(event.target.value);
+  }, []);
+  const onChangeBatch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setBatch(event.target.value);
+  }, []);
 
   const onChangeDepartement = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -81,14 +86,12 @@ export const SubHeader = ({ props }: any) => {
     },
     [],
   );
-
   const onChangePassYear = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setPassYear(event.target.value);
     },
     [],
   );
-
   const loginHandler = useCallback(
     async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
       event.preventDefault();
@@ -114,13 +117,13 @@ export const SubHeader = ({ props }: any) => {
         });
         setIdentity('');
         setPassword('');
-        return router.push('/main');
+        return router.push('#');
       }
-      if (res?.status === 404) {
+      if (res?.status === 403) {
         return toast({
-          title: 'Sign In faild',
-          description: res?.message,
-          status: 'error',
+          title: 'Pending User !!!!',
+          description: res.message,
+          status: 'info',
           duration: 3000,
           isClosable: true,
           position: 'top-right',
@@ -128,29 +131,32 @@ export const SubHeader = ({ props }: any) => {
       }
       return console.log(res.message);
     },
-    [identity, password, toast],
+    [identity, password, toast, router],
   );
-
   const onChangeName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   }, []);
-
-  const onChangeBatch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setBatch(event.target.value);
-  }, []);
-
   const onChangePhone = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
   }, []);
-
-  const onChangeRoll = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setRoll(event.target.value);
+  const onChangeCompay = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setDesignation(event.target.value);
   }, []);
-
+  const onChangeDesignation = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setCompany(event.target.value);
+    },
+    [],
+  );
+  const onChangeEmail = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }, []);
   const signUpHandler = useCallback(
     async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
       event.preventDefault();
-      if (!name || !batch || !phone || !password) {
+      console.log(email);
+
+      if (!identity || !phone || !password) {
         return toast({
           title: 'Warning',
           description: 'All filed are required !!!!',
@@ -160,8 +166,20 @@ export const SubHeader = ({ props }: any) => {
           position: 'top-right',
         });
       }
-
-      const res = await signUp(name, email, sanitizePhone(phone), password);
+      const res = await signUp(
+        blood,
+        Number(passYear),
+        department,
+        identity,
+        batch,
+        designation,
+        company,
+        identity,
+        password,
+        name,
+        sanitizePhone(phone),
+        email,
+      );
       console.log(res);
 
       if (res?.code === 201) {
@@ -178,19 +196,8 @@ export const SubHeader = ({ props }: any) => {
         setSignIn(false);
 
         setName('');
-        setBatch('');
+        setEmail('');
         setPassword('');
-      }
-
-      if (res?.status === 422) {
-        return toast({
-          title: 'Registration faild',
-          description: 'Email or Phone no already registered',
-          status: 'info',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
       }
       if (res?.status === 400) {
         return toast({
@@ -202,9 +209,33 @@ export const SubHeader = ({ props }: any) => {
           position: 'top-right',
         });
       }
+      if (res?.status === 422) {
+        return toast({
+          title: 'Registration faild',
+          description: res.message,
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+
       return console.log(res);
     },
-    [name, password, phone, toast, batch],
+    [
+      name,
+      email,
+      password,
+      phone,
+      toast,
+      batch,
+      blood,
+      company,
+      department,
+      designation,
+      identity,
+      passYear,
+    ],
   );
 
   return (
@@ -222,61 +253,53 @@ export const SubHeader = ({ props }: any) => {
 
       <Box alignItems="flex-end">
         <Stack direction="row-reverse">
-          <NextLink passHref href="#">
-            <Link>
-              <Box
-                variant="link"
-                justifySelf="center"
-                alignSelf="center"
-                alignItems="center"
-                alignContent="center"
-              >
-                <Button
-                  rightIcon={<ArrowForwardIcon />}
-                  color="white"
-                  colorScheme="white"
-                  display={{
-                    base: 'none',
-                    sm: 'none',
-                    md: 'block',
-                    lg: 'block',
-                  }}
-                  onClick={() => {
-                    setSignUp(true);
-                    setSignIn(false);
-                  }}
-                >
-                  Sign Up
-                </Button>
-              </Box>
-            </Link>
-          </NextLink>
+          <Box
+            variant="link"
+            justifySelf="center"
+            alignSelf="center"
+            alignItems="center"
+            alignContent="center"
+          >
+            <Button
+              rightIcon={<ArrowForwardIcon />}
+              color="white"
+              colorScheme="white"
+              display={{
+                base: 'none',
+                sm: 'none',
+                md: 'block',
+                lg: 'block',
+              }}
+              onClick={() => {
+                setSignUp(true);
+                setSignIn(false);
+              }}
+            >
+              Sign Up
+            </Button>
+          </Box>
 
-          <NextLink passHref href="#">
-            <Link>
-              <Box variant="link">
-                <Button
-                  rightIcon={<ArrowForwardIcon />}
-                  color="white"
-                  colorScheme="white"
-                  display={{
-                    base: 'none',
-                    sm: 'none',
-                    md: 'block',
-                    lg: 'block',
-                  }}
-                  onClick={() => {
-                    setSignUp(false);
-                    setSignIn(true);
-                  }}
-                >
-                  Login
-                </Button>
-              </Box>
-            </Link>
-          </NextLink>
+          <Box variant="link">
+            <Button
+              rightIcon={<ArrowForwardIcon />}
+              color="white"
+              colorScheme="white"
+              display={{
+                base: 'none',
+                sm: 'none',
+                md: 'block',
+                lg: 'block',
+              }}
+              onClick={() => {
+                setSignUp(false);
+                setSignIn(true);
+              }}
+            >
+              Login
+            </Button>
+          </Box>
 
-          <NextLink passHref href="#">
+          <NextLink passHref href="/contact">
             <Link>
               <Box variant="link">
                 <Button
@@ -296,7 +319,7 @@ export const SubHeader = ({ props }: any) => {
             </Link>
           </NextLink>
 
-          <NextLink passHref href="#">
+          <NextLink passHref href="about">
             <Link>
               <Box variant="link">
                 <Button
@@ -311,6 +334,25 @@ export const SubHeader = ({ props }: any) => {
                   }}
                 >
                   About
+                </Button>
+              </Box>
+            </Link>
+          </NextLink>
+          <NextLink passHref href="admin">
+            <Link>
+              <Box variant="link">
+                <Button
+                  rightIcon={<ArrowForwardIcon />}
+                  color="white"
+                  colorScheme="white"
+                  display={{
+                    base: 'none',
+                    sm: 'none',
+                    md: 'none',
+                    lg: 'none',
+                  }}
+                >
+                  Admin Pannel
                 </Button>
               </Box>
             </Link>
@@ -356,6 +398,9 @@ export const SubHeader = ({ props }: any) => {
                       ref={initialRef}
                       placeholder="Enter student id"
                       onChange={onChangeIdentity}
+                      color={golden}
+                      colorScheme={golden}
+                      borderColor={golden}
                     />
                   </FormControl>
 
@@ -365,6 +410,9 @@ export const SubHeader = ({ props }: any) => {
                       placeholder="Enter password"
                       type="password"
                       onChange={onChangePassword}
+                      color={golden}
+                      colorScheme={golden}
+                      borderColor={golden}
                     />
                   </FormControl>
                 </ModalBody>
@@ -406,7 +454,7 @@ export const SubHeader = ({ props }: any) => {
                     <Input
                       ref={initialRef}
                       placeholder="ex.Jone doe"
-                      onChange={onChangeName}
+                      onChange={onChangeIdentity}
                       color={golden}
                       colorScheme={golden}
                       borderColor={golden}
@@ -438,14 +486,26 @@ export const SubHeader = ({ props }: any) => {
                   </FormControl>
 
                   <FormControl mt={4}>
-                    <FormLabel>Roll *</FormLabel>
+                    <FormLabel>Company</FormLabel>
                     <Input
                       ref={initialRef}
-                      placeholder="080122081"
-                      onChange={onChangeRoll}
+                      placeholder="ex. starit"
                       color={golden}
                       colorScheme={golden}
                       borderColor={golden}
+                      onChange={onChangeCompay}
+                    />
+                  </FormControl>
+
+                  <FormControl mt={4}>
+                    <FormLabel>designation</FormLabel>
+                    <Input
+                      ref={initialRef}
+                      placeholder="Software Engineer"
+                      color={golden}
+                      colorScheme={golden}
+                      borderColor={golden}
+                      onChange={onChangeDesignation}
                     />
                   </FormControl>
 
@@ -453,7 +513,7 @@ export const SubHeader = ({ props }: any) => {
                     <FormLabel>Department</FormLabel>
                     <Input
                       ref={initialRef}
-                      placeholder="+8801760 __ __ __ __ __ __"
+                      placeholder="CSE"
                       onChange={onChangeDepartement}
                       color={golden}
                       colorScheme={golden}
@@ -480,6 +540,31 @@ export const SubHeader = ({ props }: any) => {
                       type="tel"
                       placeholder="+8801760 __ __ __ __ __ __"
                       onChange={onChangePhone}
+                      color={golden}
+                      colorScheme={golden}
+                      borderColor={golden}
+                    />
+                  </FormControl>
+
+                  <FormControl mt={4}>
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                      ref={initialRef}
+                      type="tel"
+                      placeholder="+8801760 __ __ __ __ __ __"
+                      onChange={onChangeEmail}
+                      color={golden}
+                      colorScheme={golden}
+                      borderColor={golden}
+                    />
+                  </FormControl>
+
+                  <FormControl mt={4}>
+                    <FormLabel>Blood Group</FormLabel>
+                    <Input
+                      ref={initialRef}
+                      placeholder="ex. O+"
+                      onChange={onChangeBlood}
                       color={golden}
                       colorScheme={golden}
                       borderColor={golden}

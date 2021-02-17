@@ -1,4 +1,5 @@
 import Footer from '@/components/footer';
+import { SubHeader } from '@/components/sub-header';
 import { csBackground, golden } from '@/themes/custom.color';
 import { CalendarIcon } from '@chakra-ui/icons';
 import {
@@ -25,19 +26,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 function Story() {
   return (
     <Box bg={csBackground}>
-      <Box bg={golden}>
-        <HStack
-          minH={['40px', '50px', '80px', '50px']}
-          mx={['10px', '50px', '100px', '230px']}
-          spacing={['24px', '24px', '24px', '24px']}
-          color="white"
-        >
-          <Text>Register Now</Text>
-          <Text>Search</Text>
-          <Text>Matches</Text>
-          <Text>Inbox</Text>
-          <Text>More</Text>
-        </HStack>
+      <Box bg="gray.500" px={['10px', '50px', '100px', '195px']}>
+        <SubHeader />
       </Box>
       <Box mt={2}>
         <Tabs>
