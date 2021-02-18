@@ -9,7 +9,7 @@ export const Special = () => (
       pt={['20px', '30px', '40px', '50px']}
       fontSize={['15px', '20px', '25px', '25px']}
     >
-      Find your Special Someone
+      WELCOME TO EUB ALUMNI
     </Heading>
     <Box my={['0px', '0px', '40px', '60px']}>
       <Image
