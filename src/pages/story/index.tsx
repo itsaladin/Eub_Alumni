@@ -1,24 +1,24 @@
 import Footer from '@/components/footer';
 import { SubHeader } from '@/components/sub-header';
-import { csBackground, golden } from '@/themes/custom.color';
+import { csBackground } from '@/themes/custom.color';
 import { CalendarIcon } from '@chakra-ui/icons';
 import {
+  AspectRatio,
   Box,
+  Center,
+  Divider,
+  Grid,
+  GridItem,
+  Heading,
   HStack,
   Image,
+  Stack,
   Tab,
   TabList,
-  Center,
   TabPanel,
   TabPanels,
   Tabs,
   Text,
-  Grid,
-  GridItem,
-  Heading,
-  Divider,
-  AspectRatio,
-  Stack,
 } from '@chakra-ui/react';
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';

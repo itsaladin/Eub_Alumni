@@ -15,13 +15,8 @@ const RootStoreContext = createContext<RootStoreModel | null>(null);
 const blacklist = { hydrated: false };
 
 export const RootStoreProvider: React.FC = ({ children }) => {
-  // The store instance that will be passed down the context tree.
-  // We keep this in a ref to avoid unnecessary rerenders.
-  // We could have exported the context or stored it as a global
-  // variable but that is a testing nightare and not recommended.
   const store = useRef(RootStore.create({ user: {}, ...blacklist }));
 
-  // Effects will only run on client side.
   useAsyncEffect(
     async (isMounted) => {
       const data = await localforage.getItem<RootStoreStorage>('rootStore');
@@ -71,9 +66,6 @@ export const RootStoreProvider: React.FC = ({ children }) => {
     },
     (disposer) => {
       console.log('RootStoreProvider is getting unmounted.');
-      // disposer can be undefined in some cases, such as-
-      // Component getting unmounted before the async effect
-      // has finished running, or, it has thrown.
       if (disposer) {
         disposer();
       }

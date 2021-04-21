@@ -1,6 +1,5 @@
 import Footer from '@/components/footer';
 import { SubHeader } from '@/components/sub-header';
-import { apiKey } from '@/constants/api';
 import { csBackground } from '@/themes/custom.color';
 import { Box, Divider, Grid, Text } from '@chakra-ui/react';
 import React from 'react';

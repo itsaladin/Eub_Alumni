@@ -23,6 +23,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Stack,
   useDisclosure,
   useToast,
@@ -40,16 +41,17 @@ import React, {
 export const SubHeader = ({ props }: any) => {
   const { onOpen } = useDisclosure();
   const router = useRouter();
+  const toast = useToast();
 
   const initialRef = useRef<any>();
   const finalRef = useRef<any>();
-
-  const toast = useToast();
 
   const [identity, setIdentity] = useState('');
   const [password, setPassword] = useState('');
   const [passYear, setPassYear] = useState('');
   const [batch, setBatch] = useState('');
+  const [topic, setTopic] = useState('');
+  const [title, setTitle] = useState('');
   const [department, setDepartment] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -61,6 +63,13 @@ export const SubHeader = ({ props }: any) => {
   const [isSignIn, setSignIn] = useState(false);
   const [isSignUp, setSignUp] = useState(false);
 
+  const handleTopicChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value);
+    setTopic(event.target.value);
+  };
+  const onChangeTitle = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  }, []);
   const onChangeIdentity = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setIdentity(event.target.value);
@@ -79,7 +88,6 @@ export const SubHeader = ({ props }: any) => {
   const onChangeBatch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setBatch(event.target.value);
   }, []);
-
   const onChangeDepartement = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setDepartment(event.target.value);
@@ -167,6 +175,8 @@ export const SubHeader = ({ props }: any) => {
         });
       }
       const res = await signUp(
+        title,
+        topic,
         blood,
         Number(passYear),
         department,
@@ -219,10 +229,11 @@ export const SubHeader = ({ props }: any) => {
           position: 'top-right',
         });
       }
-
       return console.log(res);
     },
     [
+      title,
+      topic,
       name,
       email,
       password,
@@ -486,10 +497,33 @@ export const SubHeader = ({ props }: any) => {
                   </FormControl>
 
                   <FormControl mt={4}>
+                    <FormLabel>Project/Thesis</FormLabel>
+                    <Select
+                      placeholder="Select option"
+                      value={topic}
+                      onChange={handleTopicChange}
+                    >
+                      <option value="Project">Project</option>
+                      <option value="Thesis">Thesis</option>
+                    </Select>
+                  </FormControl>
+                  <FormControl mt={4}>
+                    <FormLabel>Project/Thesis Title</FormLabel>
+                    <Input
+                      ref={initialRef}
+                      placeholder="Deep Learning Methods to Identify Rotten Fruits"
+                      color={golden}
+                      colorScheme={golden}
+                      borderColor={golden}
+                      onChange={onChangeTitle}
+                    />
+                  </FormControl>
+
+                  <FormControl mt={4}>
                     <FormLabel>Company</FormLabel>
                     <Input
                       ref={initialRef}
-                      placeholder="ex. starit"
+                      placeholder="ex. Star it Limited"
                       color={golden}
                       colorScheme={golden}
                       borderColor={golden}
@@ -498,7 +532,7 @@ export const SubHeader = ({ props }: any) => {
                   </FormControl>
 
                   <FormControl mt={4}>
-                    <FormLabel>designation</FormLabel>
+                    <FormLabel>Designation</FormLabel>
                     <Input
                       ref={initialRef}
                       placeholder="Software Engineer"
@@ -551,7 +585,7 @@ export const SubHeader = ({ props }: any) => {
                     <Input
                       ref={initialRef}
                       type="tel"
-                      placeholder="+8801760 __ __ __ __ __ __"
+                      placeholder="alauddin@ __ __ __ __ __ __"
                       onChange={onChangeEmail}
                       color={golden}
                       colorScheme={golden}

@@ -2,6 +2,8 @@ import publicFetch from '@/api/utils/public-fetch';
 import { signInUrl, signUpUrl } from '@/constants/api';
 
 export const signUp = async (
+  submissionTitle: string,
+  submission: string,
   blood: string,
   passyear: number,
   department: string,
@@ -17,6 +19,8 @@ export const signUp = async (
 ) => {
   try {
     const data = {
+      submissionTitle,
+      submission,
       blood,
       passyear,
       department,
