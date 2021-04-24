@@ -32,7 +32,7 @@ export const getPending = async () => {
         'Content-Type': 'application/json',
       },
     });
-    const response: PendingResponse = await res.json();
+    const response: PendingResponse[] = await res.json();
     return response;
   } catch (error) {
     return console.error(error);
@@ -48,7 +48,7 @@ export const getApprovedUser = async () => {
         'Content-Type': 'application/json',
       },
     });
-    const response: PendingResponse = await res.json();
+    const response: PendingResponse[] = await res.json();
     console.log(JSON.stringify(response, null, 2));
     return response;
   } catch (error) {

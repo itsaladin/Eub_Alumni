@@ -32,8 +32,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import useAsyncEffect from 'use-async-effect';
 
 function Admin() {
-  const [pending, setPending] = useState<PendingResponse>();
-  const [approved, setApproved] = useState<PendingResponse>();
+  const [pending, setPending] = useState<PendingResponse[]>();
+  const [approved, setApproved] = useState<PendingResponse[]>();
   const toast = useToast();
 
   useAsyncEffect(async (isMounted) => {
@@ -91,7 +91,7 @@ function Admin() {
               </Tr>
             </Thead>
             <Tbody>
-              {pending?.map((pendingList: PendingResponse) => (
+              {pending?.map((pendingList) => (
                 <Tr key={pendingList.id}>
                   <Td fontSize="12px">{pendingList?.roll}</Td>
                   <Td fontSize="12px">{pendingList?.name}</Td>
@@ -132,7 +132,7 @@ function Admin() {
                         }
                         return toast({
                           title: 'Warnning',
-                          description: result.message,
+                          description: 'User delete request faild',
                           status: 'error',
                           duration: 3000,
                           isClosable: true,
@@ -162,7 +162,7 @@ function Admin() {
                         }
                         return toast({
                           title: 'Warnning',
-                          description: result.message,
+                          description: 'User accepet request faild',
                           status: 'error',
                           duration: 3000,
                           isClosable: true,
