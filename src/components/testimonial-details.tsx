@@ -11,9 +11,13 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React from 'react';
 
-const TestimonialDetails = ({ image }: any) => (
+interface Props {
+  image: string;
+  batch: string;
+}
+
+const TestimonialDetails: React.FC<Props> = ({ image, batch }) => (
   <Box borderWidth="1px" borderColor="GrayText" bg="gray.200">
     <NextLink passHref href="/#">
       <Link>
@@ -30,7 +34,7 @@ const TestimonialDetails = ({ image }: any) => (
     </NextLink>
     <Box>
       <Text fontWeight="bold" fontSize="md" noOfLines={1} textAlign="center">
-        It might just work for you
+        It might just work for you {batch}
       </Text>
       <Box>
         <NextLink passHref href="/story">
@@ -42,7 +46,8 @@ const TestimonialDetails = ({ image }: any) => (
                 noOfLines={1}
                 textAlign="center"
               >
-                Batch - 05
+                {console.log(batch)}
+                {batch}
               </Text>
             </Tooltip>
           </Link>

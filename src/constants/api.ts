@@ -18,6 +18,8 @@ export const signInUrl = `${baseApiUrl}auth/login`;
 
 export const pendingUserUrl = `${baseApiUrl}admin/users/pending?`;
 
+export const approvedUsers = `${baseApiUrl}admin/users?`;
+
 export const deleteUserURL = `${baseApiUrl}admin/users/`;
 
 export const approveUserUrl = `${baseApiUrl}admin/users/approve/`;

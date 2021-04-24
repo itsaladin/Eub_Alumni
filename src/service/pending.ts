@@ -1,4 +1,4 @@
-import { api_key, pendingUserUrl } from '@/constants/api';
+import { api_key, approvedUsers, pendingUserUrl } from '@/constants/api';
 
 export interface PendingResponse {
   id: string;
@@ -26,6 +26,22 @@ export interface PendingResponse {
 export const getPending = async () => {
   try {
     const res = await fetch(`${pendingUserUrl}api_key=${api_key}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    const response: PendingResponse = await res.json();
+    return response;
+  } catch (error) {
+    return console.error(error);
+  }
+};
+
+export const getApprovedUser = async () => {
+  try {
+    const res = await fetch(`${approvedUsers}api_key=${api_key}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

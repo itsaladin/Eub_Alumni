@@ -126,9 +126,9 @@ export default function Home() {
             interval={2000}
             centerSlidePercentage={cardSliderResize}
           >
-            <TestimonialDetails image="/slider/2.jpg" />
-            <TestimonialDetails image="/slider/5.jpg" />
-            <TestimonialDetails image="/slider/3.jpg" />
+            <TestimonialDetails image="/slider/2.jpg" batch="B-7" />
+            <TestimonialDetails image="/slider/5.jpg" batch="B-8" />
+            <TestimonialDetails image="/slider/3.jpg" batch="B-9" />
           </Carousel>
         </Box>
         <Box px={['20px', '50px', '80px', '150px']} bg="gray.200" pb={['80px']}>

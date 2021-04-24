@@ -100,47 +100,6 @@ export const SubHeader = ({ props }: any) => {
     },
     [],
   );
-  const loginHandler = useCallback(
-    async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-      event.preventDefault();
-      if (!identity || !password) {
-        return toast({
-          title: 'Warning',
-          description: 'Identy / Password filed not be empyt !!!!',
-          status: 'info',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-      }
-      const res = await signIn(sanitizePhone(identity), password);
-      if (res?.status === 200) {
-        toast({
-          title: 'Sign In Successful',
-          description: res.message,
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-        setIdentity('');
-        setPassword('');
-        return router.push('#');
-      }
-      if (res?.status === 403) {
-        return toast({
-          title: 'Pending User !!!!',
-          description: res.message,
-          status: 'info',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-      }
-      return console.log(res.message);
-    },
-    [identity, password, toast, router],
-  );
   const onChangeName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   }, []);
@@ -150,15 +109,15 @@ export const SubHeader = ({ props }: any) => {
   const onChangeCompay = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setDesignation(event.target.value);
   }, []);
+  const onChangeEmail = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }, []);
   const onChangeDesignation = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setCompany(event.target.value);
     },
     [],
   );
-  const onChangeEmail = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  }, []);
   const signUpHandler = useCallback(
     async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
       event.preventDefault();
@@ -247,6 +206,47 @@ export const SubHeader = ({ props }: any) => {
       identity,
       passYear,
     ],
+  );
+  const loginHandler = useCallback(
+    async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+      event.preventDefault();
+      if (!identity || !password) {
+        return toast({
+          title: 'Warning',
+          description: 'Identy / Password filed not be empyt !!!!',
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+      const res = await signIn(sanitizePhone(identity), password);
+      if (res?.status === 200) {
+        toast({
+          title: 'Sign In Successful',
+          description: res.message,
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+        setIdentity('');
+        setPassword('');
+        return router.push('#');
+      }
+      if (res?.status === 403) {
+        return toast({
+          title: 'Pending User !!!!',
+          description: res.message,
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+      return console.log(res.message);
+    },
+    [identity, password, toast, router],
   );
 
   return (
