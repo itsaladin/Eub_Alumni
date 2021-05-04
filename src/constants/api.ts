@@ -18,8 +18,12 @@ export const signInUrl = `${baseApiUrl}auth/login`;
 
 export const pendingUserUrl = `${baseApiUrl}admin/users/pending?`;
 
+export const studentProfileUrl = `${baseApiUrl}user/edit`;
+
 export const approvedUsers = `${baseApiUrl}admin/users?`;
 
 export const deleteUserURL = `${baseApiUrl}admin/users/`;
 
 export const approveUserUrl = `${baseApiUrl}admin/users/approve/`;
+
+export const updateUserUrl = `${baseApiUrl}user/edit`;

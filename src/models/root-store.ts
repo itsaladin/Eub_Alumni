@@ -1,15 +1,16 @@
-import { User } from '@/models/user';
 import { Instance, SnapshotIn, SnapshotOut, types } from 'mobx-state-tree';
 
 export const RootStore = types
   .model('RootStore', {
-    user: User,
-    selectedLocationId: types.maybe(types.string),
     hydrated: types.boolean,
+    token: types.maybe(types.string),
   })
   .actions((self) => ({
     hydrate() {
       self.hydrated = true;
+    },
+    setToken(s: string) {
+      self.token = s;
     },
   }))
   .views((self) => ({

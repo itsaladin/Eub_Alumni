@@ -73,7 +73,7 @@ function Admin() {
       </Box>
       <Grid>
         <Grid templateColumns="repeat(1, 1fr)" mb={10}>
-          <Table variant="striped" colorScheme="green">
+          <Table variant="striped">
             <Thead>
               <Tr>
                 <Th fontSize="10px">Id</Th>
@@ -196,7 +196,7 @@ function Admin() {
 
       <Grid px={['10px', '50px', '100px', '100px']}>
         <Grid templateColumns="repeat(1, 1fr)" mb={10}>
-          <Table variant="striped" colorScheme="green">
+          <Table variant="striped">
             <Thead>
               <Tr>
                 <Th fontSize="10px">Id</Th>

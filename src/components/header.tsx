@@ -1,4 +1,5 @@
 import { signIn, signUp } from '@/api/auth/signUp';
+import { useRootStore } from '@/models/root-store-provider';
 import { golden } from '@/themes/custom.color';
 import { sanitizePhone } from '@/utils/sanitizers';
 import { ArrowForwardIcon, HamburgerIcon } from '@chakra-ui/icons';
@@ -40,12 +41,12 @@ import React, {
 
 export const Header = ({ props }: any) => {
   const { onOpen } = useDisclosure();
+  const { setToken } = useRootStore();
   const router = useRouter();
+  const toast = useToast();
 
   const initialRef = useRef<any>();
   const finalRef = useRef<any>();
-
-  const toast = useToast();
 
   const [identity, setIdentity] = useState('');
   const [password, setPassword] = useState('');
@@ -100,47 +101,6 @@ export const Header = ({ props }: any) => {
       setPassYear(event.target.value);
     },
     [],
-  );
-  const loginHandler = useCallback(
-    async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-      event.preventDefault();
-      if (!identity || !password) {
-        return toast({
-          title: 'Warning',
-          description: 'Id / Password filed not be empyt !!!!',
-          status: 'info',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-      }
-      const res = await signIn(sanitizePhone(identity), password);
-      if (res?.status === 200) {
-        toast({
-          title: 'Sign In Successful',
-          description: res.message,
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-        setIdentity('');
-        setPassword('');
-        return router.push('#');
-      }
-      if (res?.status === 403) {
-        return toast({
-          title: 'Pending User !!!!',
-          description: res.message,
-          status: 'info',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-right',
-        });
-      }
-      return console.log(res.message);
-    },
-    [identity, password, toast, router],
   );
   const onChangeName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -240,6 +200,49 @@ export const Header = ({ props }: any) => {
       passYear,
       topic,
     ],
+  );
+  const loginHandler = useCallback(
+    async (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+      event.preventDefault();
+      if (!identity || !password) {
+        return toast({
+          title: 'Warning',
+          description: 'Id / Password filed not be empyt !!!!',
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+      const res = await signIn(sanitizePhone(identity), password);
+      setToken(res.details.token);
+      if (res?.status === 200) {
+        toast({
+          title: 'Sign In Successful',
+          description: res.message,
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+        setIdentity('');
+        setPassword('');
+        // eslint-disable-next-line consistent-return
+        return router.push('/profile');
+      }
+      if (res?.status === 403) {
+        return toast({
+          title: 'Pending User !!!!',
+          description: res.message,
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+      return console.log(res.message);
+    },
+    [identity, password, toast, router, setToken],
   );
 
   return (

@@ -15,7 +15,7 @@ const RootStoreContext = createContext<RootStoreModel | null>(null);
 const blacklist = { hydrated: false };
 
 export const RootStoreProvider: React.FC = ({ children }) => {
-  const store = useRef(RootStore.create({ user: {}, ...blacklist }));
+  const store = useRef(RootStore.create({ ...blacklist }));
 
   useAsyncEffect(
     async (isMounted) => {
